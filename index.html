@@ -23,9 +23,91 @@ header{display:flex;align-items:center;justify-content:space-between;padding:18p
 .search-clear{display:none;position:absolute;right:8px;top:50%;transform:translateY(-50%);width:20px;height:20px;border:none;background:var(--border);color:var(--text);border-radius:50%;cursor:pointer;font-size:13px;line-height:1;align-items:center;justify-content:center}
 .search-clear.active{display:flex}
 @media(max-width:640px){.search-wrap{margin:0 10px;max-width:none}.logo span{display:none}}
+/* ---- Responsive overhaul (desktop + mobile) ---- */
+#home{max-width:1400px;margin:0 auto}
+.game-content{max-width:1100px;margin:0 auto}
+@media(min-width:641px) and (max-width:900px){
+  #home{padding:22px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+}
+@media(max-width:640px){
+  header{padding:12px 14px;gap:8px;flex-wrap:wrap}
+  .logo{font-size:18px;gap:6px}
+  .logo svg{width:20px;height:20px}
+  .search-wrap{order:3;flex-basis:100%;margin:8px 0 0}
+  .wishlist-btn{width:34px;height:34px}
+  .back-btn{padding:7px 12px;font-size:12px}
+  .badge-free{display:none}
+  #home{padding:16px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+  .card-thumb,.card-thumb-fallback{height:100px}
+  .card-body{padding:9px}
+  .card-title{font-size:13px}
+  .card-meta{font-size:11px}
+  .section-title,.section-title-adult{font-size:12px;margin-bottom:12px}
+  .toolbar{flex-direction:column;align-items:flex-start;gap:10px}
+  .sort-select{width:100%}
+  .chips{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex-shrink:0}
+  .hero{height:220px}
+  .hero-content{padding:16px}
+  .hero-title{font-size:24px}
+  .hero-genre{font-size:10px;margin-bottom:6px}
+  .tag-pill{font-size:10px}
+  .features-grid{grid-template-columns:1fr}
+  .sidebar{gap:10px}
+  .dl-card,.sys-req{padding:16px}
+  .price{font-size:26px}
+  .dl-btn{padding:12px;font-size:15px}
+  .countdown-row{flex-wrap:wrap}
+  .discount-new{font-size:22px}
+  .adult-warning{flex-direction:column;text-align:center;padding:12px}
+}
+@media(min-width:1400px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+}
 .search-results-count{font-size:12px;color:var(--muted);margin-bottom:14px;font-weight:500}
 .search-empty{padding:60px 20px;text-align:center;color:var(--muted);font-size:14px}
 .search-empty span{display:block;font-size:32px;margin-bottom:12px}
+.wishlist-btn{position:relative;display:flex;align-items:center;justify-content:center;background:var(--surface2);border:1px solid var(--border);color:var(--text);width:38px;height:38px;border-radius:8px;cursor:pointer;flex-shrink:0;transition:background 0.2s,border-color 0.2s}
+.wishlist-btn:hover{background:var(--border);border-color:#2d3d60}
+.wishlist-btn.active{color:var(--accent);border-color:var(--accent)}
+.wishlist-btn svg{width:17px;height:17px}
+.wishlist-count{display:none;position:absolute;top:-6px;right:-6px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;min-width:16px;height:16px;border-radius:8px;align-items:center;justify-content:center;padding:0 4px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.2s,color 0.2s,border-color 0.2s}
+.chip:hover{color:var(--text);border-color:#2d3d60}
+.chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.sort-select{background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:'Inter',sans-serif;font-size:12px;font-weight:600;padding:8px 12px;border-radius:8px;cursor:pointer;outline:none}
+.load-more-wrap{display:none;justify-content:center;margin:18px 0 8px}
+.load-more-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.5px;padding:10px 26px;border-radius:8px;cursor:pointer;transition:background 0.2s}
+.load-more-btn:hover{background:var(--border)}
+.my-stars{display:flex;gap:4px;font-size:22px}
+.my-star{color:var(--border);cursor:pointer;transition:color .15s}
+.my-star.filled{color:#f59e0b}
+.my-star:hover{color:#f59e0b}
+.note-input{width:100%;min-height:70px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:10px;font-family:'Inter',sans-serif;font-size:13px;resize:vertical;margin-bottom:8px}
+.note-save-btn{width:auto;padding:8px 16px;font-size:12px;margin-bottom:10px}
+.note-saved-tag{font-size:11px;color:var(--green);margin-bottom:20px;display:none}
+.adult-section-wrap{position:relative;min-height:220px}
+.adult-gate{position:absolute;inset:0;background:rgba(7,9,15,0.94);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;border-radius:14px;z-index:5;text-align:center;padding:24px}
+.adult-gate-box{max-width:360px}
+.adult-gate-box h3{font-family:'Rajdhani',sans-serif;font-size:20px;margin-bottom:8px;color:#ef4444}
+.adult-gate-box p{font-size:13px;color:#a8b4cc;line-height:1.6}
+.adult-gate-actions{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}
+.gate-btn{border:none;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;padding:10px 20px;border-radius:8px;cursor:pointer}
+.gate-btn-enter{background:var(--accent);color:#fff}
+.gate-btn-leave{background:var(--surface2);border:1px solid var(--border);color:var(--text)}
+.autocomplete{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:none;z-index:200;box-shadow:0 12px 32px rgba(0,0,0,0.5)}
+.autocomplete.active{display:block}
+.ac-item{display:flex;align-items:center;gap:10px;padding:9px 12px;cursor:pointer;font-size:13px}
+.ac-item:hover{background:var(--surface2)}
+.ac-item img{width:28px;height:28px;border-radius:6px;object-fit:cover;flex-shrink:0}
+.ac-item-fallback{width:28px;height:28px;border-radius:6px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.ac-title{color:var(--text);font-weight:600}
+.ac-genre{color:var(--muted);font-size:11px}
 .badge-free{background:rgba(34,197,94,0.12);color:var(--green);border:1px solid rgba(34,197,94,0.25);font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;letter-spacing:0.5px}
 #home{padding:28px}
 .section-title{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:18px}
@@ -125,9 +207,14 @@ header{display:flex;align-items:center;justify-content:space-between;padding:18p
   </div>
   <div class="search-wrap" id="searchWrap">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input type="text" class="search-input" id="searchInput" placeholder="Search games..." oninput="handleSearch(this.value)" onkeydown="if(event.key==='Escape')clearSearch()">
+    <input type="text" class="search-input" id="searchInput" placeholder="Search games..." autocomplete="off" oninput="handleSearch(this.value)" onkeydown="if(event.key==='Escape')clearSearch()" onfocus="handleSearch(this.value)">
     <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    <div class="autocomplete" id="autocomplete"></div>
   </div>
+  <button class="wishlist-btn" id="wishlistBtn" onclick="toggleWishlistView()" title="My Wishlist">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    <span class="wishlist-count" id="wishlistCount">0</span>
+  </button>
   <button class="back-btn" id="backBtn" onclick="goHome()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
     Back to Games
@@ -141,20 +228,50 @@ header{display:flex;align-items:center;justify-content:space-between;padding:18p
     <p class="search-results-count" id="searchCount"></p>
     <div class="grid" id="searchGrid"></div>
   </div>
+  <div id="wishlistResults" style="display:none">
+    <p class="section-title">♡ My Wishlist</p>
+    <div class="grid" id="wishlistGrid"></div>
+  </div>
   <div id="defaultSections">
-    <p class="section-title">Top Free Mobile Games — Android &amp; iOS</p>
+    <div class="section-gap" id="recentWrap" style="display:none;margin-top:0">
+      <p class="section-title">🕓 Recently Viewed</p>
+      <div class="grid" id="recentGrid"></div>
+    </div>
+    <div class="toolbar">
+      <p class="section-title" style="margin-bottom:0">Top Free Mobile Games — Android &amp; iOS</p>
+      <select class="sort-select" id="sortSelect" onchange="setSort(this.value)">
+        <option value="default">Sort: Featured</option>
+        <option value="rating">Sort: Top Rated</option>
+        <option value="downloads">Sort: Most Downloaded</option>
+        <option value="newest">Sort: Newest</option>
+      </select>
+    </div>
+    <div class="chips" id="categoryChips" style="margin-bottom:18px"></div>
     <div class="grid" id="gameGrid"></div>
+    <div class="load-more-wrap" id="gameLoadMoreWrap"><button class="load-more-btn" onclick="loadMoreGames()">Load More Games</button></div>
     <div class="section-gap">
       <p class="section-title">🏆 Top Trending Games — FREE</p>
       <div class="grid" id="paidGrid"></div>
+      <div class="load-more-wrap" id="paidLoadMoreWrap"><button class="load-more-btn" onclick="loadMorePaid()">Load More Games</button></div>
     </div>
-    <div class="section-gap">
+    <div class="section-gap adult-section-wrap" id="adultSectionWrap">
       <p class="section-title-adult">🔞 Top Adult Games for Android — itch.io</p>
       <div class="adult-warning">
         <span class="adult-warning-icon">⚠️</span>
         <div class="adult-warning-text"><strong>18+ ONLY — ADULTS ONLY CONTENT</strong><br>The following games contain mature and/or explicit content intended for adults. By browsing this section you confirm you are 18 years of age or older.</div>
       </div>
       <div class="grid" id="adultGrid"></div>
+      <div class="adult-gate" id="adultGate">
+        <div class="adult-gate-box">
+          <div style="font-size:32px;margin-bottom:10px">🔞</div>
+          <h3>Adults Only</h3>
+          <p>This section contains mature and/or explicit content intended only for users 18 years of age or older.</p>
+          <div class="adult-gate-actions">
+            <button class="gate-btn gate-btn-enter" onclick="confirmAge(true)">I am 18+ — Enter</button>
+            <button class="gate-btn gate-btn-leave" onclick="confirmAge(false)">Leave</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -176,6 +293,14 @@ header{display:flex;align-items:center;justify-content:space-between;padding:18p
       <p id="gameDesc"></p>
       <h2>Key Features</h2>
       <div class="features-grid" id="featuresGrid"></div>
+      <h2>My Notes</h2>
+      <textarea class="note-input" id="noteInput" placeholder="Jot down your thoughts about this game (saved on this device only)..."></textarea>
+      <button class="dl-btn dl-btn-secondary note-save-btn" onclick="saveNote()">Save Note</button>
+      <span class="note-saved-tag" id="noteSavedTag">✓ Saved</span>
+      <div id="similarWrap" style="display:none">
+        <h2>Similar Games</h2>
+        <div class="grid" id="similarGrid" style="margin-bottom:24px"></div>
+      </div>
     </div>
     <div class="sidebar">
       <div class="dl-card">
@@ -193,10 +318,15 @@ header{display:flex;align-items:center;justify-content:space-between;padding:18p
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download Now
         </button>
-        <button class="dl-btn dl-btn-secondary" onclick="wishlist(this)">
+        <button class="dl-btn dl-btn-secondary" id="dlWishlistBtn" onclick="toggleWishlistBtn(this)">
           <svg style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           Add to Wishlist
         </button>
+      </div>
+      <div class="dl-card">
+        <h3>Rate This Game</h3>
+        <div class="my-stars" id="myStars"></div>
+        <p style="font-size:11px;color:var(--muted);margin-top:8px">Your rating is saved on this device only.</p>
       </div>
       <div class="sys-req">
         <h3>Requirements</h3>
@@ -210,7 +340,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:18p
 const GAMES = [
   {
     id:'pubgm',
-    title:'PUBG Mobile MOD',
+    title:'PUBG Mobile',
     genre:'Battle Royale',
     developer:'Krafton / Tencent',
     year:2018,
@@ -236,7 +366,7 @@ const GAMES = [
   },
   {
     id:'freefire',
-    title:'Free Fire MOD',
+    title:'Free Fire',
     genre:'Battle Royale',
     developer:'Garena',
     year:2017,
@@ -262,7 +392,7 @@ const GAMES = [
   },
   {
     id:'clashofclans',
-    title:'Clash of Clans MOD',
+    title:'Clash of Clans',
     genre:'Strategy',
     developer:'Supercell',
     year:2012,
@@ -288,7 +418,7 @@ const GAMES = [
   },
   {
     id:'mobilelegends',
-    title:'Mobile Legends: Bang Bang MOD',
+    title:'Mobile Legends: Bang Bang',
     genre:'MOBA',
     developer:'Moonton',
     year:2016,
@@ -314,7 +444,7 @@ const GAMES = [
   },
   {
     id:'subwaysurfers',
-    title:'Subway Surfers MOD',
+    title:'Subway Surfers',
     genre:'Endless Runner',
     developer:'SYBO Games',
     year:2012,
@@ -340,7 +470,7 @@ const GAMES = [
   },
   {
     id:'candycrush',
-    title:'Candy Crush Saga MOD',
+    title:'Candy Crush Saga',
     genre:'Puzzle',
     developer:'King',
     year:2012,
@@ -366,7 +496,7 @@ const GAMES = [
   },
   {
     id:'roblox',
-    title:'Roblox MOD',
+    title:'Roblox',
     genre:'Sandbox / Social',
     developer:'Roblox Corporation',
     year:2006,
@@ -392,7 +522,7 @@ const GAMES = [
   },
   {
     id:'clashroyale',
-    title:'Clash Royale MOD',
+    title:'Clash Royale',
     genre:'Strategy / Card',
     developer:'Supercell',
     year:2016,
@@ -418,7 +548,7 @@ const GAMES = [
   },
   {
     id:'honkaistarrail',
-    title:'Honkai: Star Rail MOD',
+    title:'Honkai: Star Rail',
     genre:'RPG / Turn-based',
     developer:'HoYoverse',
     year:2023,
@@ -444,7 +574,7 @@ const GAMES = [
   },
   {
     id:'genshin',
-    title:'Genshin Impact MOD',
+    title:'Genshin Impact',
     genre:'Action RPG',
     developer:'HoYoverse',
     year:2020,
@@ -628,9 +758,14 @@ function starsHtml(rating){
   return s;
 }
 
+let currentGameId=null;
+
+function primaryCategory(g){ return g.genre.split('/')[0].trim(); }
+
 function showGame(id){
   const g=ALL_GAMES.find(x=>x.id===id);
   if(!g) return;
+  currentGameId=id;
   document.getElementById('home').style.display='none';
   document.getElementById('game-page').style.display='block';
   document.getElementById('backBtn').style.display='flex';
@@ -689,22 +824,167 @@ function showGame(id){
     </div>
   `).join('');
 
+  setWishlistBtnState(document.getElementById('dlWishlistBtn'), isWishlisted(id));
+  renderMyStars(id);
+  renderNote(id);
+  renderSimilar(g);
+  addRecent(id);
+
+  document.title = g.title + ' — Free Download | GAMES4HUB';
+  setMeta(g.desc.slice(0,155));
+
   window.scrollTo({top:0,behavior:'smooth'});
   window.location.hash=id;
+}
+
+function renderSimilar(g){
+  const cat=primaryCategory(g);
+  const similar=ALL_GAMES.filter(x=>x.id!==g.id && primaryCategory(x)===cat && !ADULT_GAMES.find(a=>a.id===x.id)).slice(0,4);
+  const wrap=document.getElementById('similarWrap');
+  if(!similar.length){ wrap.style.display='none'; return; }
+  wrap.style.display='block';
+  document.getElementById('similarGrid').innerHTML=similar.map(cardHtml).join('');
 }
 
 function goHome(){
   document.getElementById('home').style.display='block';
   document.getElementById('game-page').style.display='none';
   document.getElementById('backBtn').style.display='none';
+  currentGameId=null;
+  document.title='GAMES4HUB — Mobile Games';
+  setMeta('Play the top free mobile games for Android and iOS. New games added every week.');
   window.location.hash='';
   window.scrollTo({top:0,behavior:'smooth'});
+  renderRecent();
 }
 
-function wishlist(btn){
-  btn.textContent='✓ Wishlisted';
-  btn.style.color='var(--green)';
-  btn.style.borderColor='rgba(34,197,94,0.3)';
+function setMeta(desc){
+  let m=document.querySelector('meta[name="description"]');
+  if(!m){ m=document.createElement('meta'); m.name='description'; document.head.appendChild(m); }
+  m.content=desc;
+}
+
+/* ---------- Wishlist (saved locally in this browser) ---------- */
+function getWishlist(){
+  try{ return JSON.parse(localStorage.getItem('wishlist')||'[]'); }catch(e){ return []; }
+}
+function isWishlisted(id){ return getWishlist().includes(id); }
+function toggleWishlist(id){
+  let list=getWishlist();
+  if(list.includes(id)) list=list.filter(x=>x!==id);
+  else list.push(id);
+  localStorage.setItem('wishlist', JSON.stringify(list));
+  updateWishlistCount();
+  return list.includes(id);
+}
+function toggleWishlistBtn(btn){
+  if(!currentGameId) return;
+  const active=toggleWishlist(currentGameId);
+  setWishlistBtnState(btn, active);
+  if(uiState.view==='wishlist') renderWishlist();
+}
+function setWishlistBtnState(btn, active){
+  if(!btn) return;
+  if(active){
+    btn.innerHTML='✓ Wishlisted';
+    btn.style.color='var(--green)';
+    btn.style.borderColor='rgba(34,197,94,0.3)';
+  } else {
+    btn.innerHTML=`<svg style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Add to Wishlist`;
+    btn.style.color='';
+    btn.style.borderColor='';
+  }
+}
+function updateWishlistCount(){
+  const n=getWishlist().length;
+  const el=document.getElementById('wishlistCount');
+  const btn=document.getElementById('wishlistBtn');
+  if(el){ el.textContent=n; el.style.display=n>0?'flex':'none'; }
+  if(btn) btn.classList.toggle('active', uiState.view==='wishlist');
+}
+function renderWishlist(){
+  const ids=getWishlist();
+  const games=ids.map(id=>ALL_GAMES.find(g=>g.id===id)).filter(Boolean);
+  document.getElementById('wishlistGrid').innerHTML = games.length
+    ? games.map(cardHtml).join('')
+    : `<div class="search-empty" style="grid-column:1/-1"><span>♡</span>Your wishlist is empty. Open any game and tap "Add to Wishlist" to save it here.</div>`;
+}
+function toggleWishlistView(){
+  if(uiState.view==='wishlist'){ setView('default'); }
+  else {
+    document.getElementById('searchInput').value='';
+    document.getElementById('searchClear').classList.remove('active');
+    hideAutocomplete();
+    setView('wishlist');
+    renderWishlist();
+  }
+  updateWishlistCount();
+}
+
+/* ---------- Personal star rating (saved locally) ---------- */
+function getMyRatings(){ try{ return JSON.parse(localStorage.getItem('myRatings')||'{}'); }catch(e){ return {}; } }
+function setMyRating(id, stars){
+  const r=getMyRatings(); r[id]=stars;
+  localStorage.setItem('myRatings', JSON.stringify(r));
+  renderMyStars(id);
+}
+function renderMyStars(id){
+  const r=getMyRatings();
+  const current=r[id]||0;
+  const el=document.getElementById('myStars');
+  if(!el) return;
+  el.innerHTML=[1,2,3,4,5].map(n=>`<span class="my-star ${n<=current?'filled':''}" onclick="setMyRating('${id}',${n})">★</span>`).join('');
+}
+
+/* ---------- Personal notes (saved locally) ---------- */
+function getNotes(){ try{ return JSON.parse(localStorage.getItem('myNotes')||'{}'); }catch(e){ return {}; } }
+function saveNote(){
+  if(!currentGameId) return;
+  const val=document.getElementById('noteInput').value.trim();
+  const notes=getNotes();
+  notes[currentGameId]=val;
+  localStorage.setItem('myNotes', JSON.stringify(notes));
+  const tag=document.getElementById('noteSavedTag');
+  tag.style.display='inline';
+  setTimeout(()=>{ tag.style.display='none'; }, 1800);
+}
+function renderNote(id){
+  const notes=getNotes();
+  document.getElementById('noteInput').value=notes[id]||'';
+  document.getElementById('noteSavedTag').style.display='none';
+}
+
+/* ---------- Recently viewed (saved locally) ---------- */
+function addRecent(id){
+  let list=[];
+  try{ list=JSON.parse(localStorage.getItem('recent')||'[]'); }catch(e){}
+  list=list.filter(x=>x!==id);
+  list.unshift(id);
+  localStorage.setItem('recent', JSON.stringify(list.slice(0,6)));
+}
+function renderRecent(){
+  let list=[];
+  try{ list=JSON.parse(localStorage.getItem('recent')||'[]'); }catch(e){}
+  const games=list.map(id=>ALL_GAMES.find(g=>g.id===id)).filter(Boolean);
+  const wrap=document.getElementById('recentWrap');
+  if(!games.length){ wrap.style.display='none'; return; }
+  wrap.style.display='block';
+  document.getElementById('recentGrid').innerHTML=games.map(cardHtml).join('');
+}
+
+/* ---------- Age gate for adult section ---------- */
+function checkAgeGate(){
+  const verified=localStorage.getItem('ageVerified')==='1';
+  const gate=document.getElementById('adultGate');
+  if(gate) gate.style.display=verified?'none':'flex';
+}
+function confirmAge(yes){
+  if(yes){
+    localStorage.setItem('ageVerified','1');
+    document.getElementById('adultGate').style.display='none';
+  } else {
+    document.getElementById('adultSectionWrap').style.display='none';
+  }
 }
 
 const PAID_GAMES = [
@@ -1269,34 +1549,21 @@ const ADULT_GAMES = [
 ];
 
 const ALL_GAMES = [...GAMES, ...PAID_GAMES, ...ADULT_GAMES];
+const PAGE_SIZE = 8;
+let uiState = { view:'default', category:'all', sort:'default', gamesShown:PAGE_SIZE, paidShown:PAGE_SIZE };
 
-function buildGrid(){
-  const grid=document.getElementById('gameGrid');
-  grid.innerHTML=GAMES.map(g=>`
-    <div class="card" onclick="showGame('${g.id}')">
-      <div class="card-badge">FREE</div>
-      <img class="card-thumb" src="${g.img}" alt="${g.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="card-thumb-fallback" style="display:none">${g.emoji}</div>
-      <div class="card-body">
-        <div class="card-title">${g.title}</div>
-        <div class="card-meta">
-          <span>${g.genre}</span>
-          <span class="dot"></span>
-          <span>${g.developer.split(' ')[0]}</span>
-        </div>
-      </div>
-    </div>
-  `).join('');
+function badgeFor(g){
+  if(ADULT_GAMES.find(x=>x.id===g.id)) return '<div class="card-badge-adult">18+</div>';
+  if(g.discount) return `<div class="card-badge-discount"><span class="badge-old-price">${g.price}</span><span class="badge-new-price">${g.discount.salePrice} · ${g.discount.days}d left</span></div>`;
+  if(g.price) return `<div class="card-badge-paid">${g.price}</div>`;
+  return '<div class="card-badge">FREE</div>';
+}
 
-  const pgrid=document.getElementById('paidGrid');
-  pgrid.innerHTML=PAID_GAMES.map(g=>{
-    const badge = g.discount
-      ? `<div class="card-badge-discount"><span class="badge-old-price">${g.price}</span><span class="badge-new-price">${g.discount.salePrice} · ${g.discount.days}d left</span></div>`
-      : `<div class="card-badge-paid">${g.price}</div>`;
-    return `
+function cardHtml(g){
+  return `
     <div class="card" onclick="showGame('${g.id}')">
-      ${badge}
-      <img class="card-thumb" src="${g.img}" alt="${g.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      ${badgeFor(g)}
+      <img class="card-thumb" src="${g.img}" alt="${g.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="card-thumb-fallback" style="display:none">${g.emoji}</div>
       <div class="card-body">
         <div class="card-title">${g.title}</div>
@@ -1307,18 +1574,82 @@ function buildGrid(){
         </div>
       </div>
     </div>`;
-  }).join('');
 }
 
-buildGrid();
+/* ---------- View switching (default / search / wishlist) ---------- */
+function setView(mode){
+  uiState.view=mode;
+  document.getElementById('defaultSections').style.display = mode==='default'?'block':'none';
+  document.getElementById('searchResults').style.display = mode==='search'?'block':'none';
+  document.getElementById('wishlistResults').style.display = mode==='wishlist'?'block':'none';
+  document.getElementById('wishlistBtn').classList.toggle('active', mode==='wishlist');
+}
 
-// Build adult grid
+/* ---------- Category chips + sort + pagination ---------- */
+function parseCount(s){
+  if(!s) return 0;
+  const m=s.toString().trim().match(/^([\d.]+)\s*([KMB]?)$/i);
+  if(!m) return parseFloat(s)||0;
+  let n=parseFloat(m[1]);
+  const unit=m[2].toUpperCase();
+  if(unit==='K') n*=1e3; if(unit==='M') n*=1e6; if(unit==='B') n*=1e9;
+  return n;
+}
+function sortList(list){
+  const arr=[...list];
+  if(uiState.sort==='rating') arr.sort((a,b)=>b.rating-a.rating);
+  else if(uiState.sort==='downloads') arr.sort((a,b)=>parseCount(b.reviews)-parseCount(a.reviews));
+  else if(uiState.sort==='newest') arr.sort((a,b)=>b.year-a.year);
+  return arr;
+}
+function filterList(list){
+  if(uiState.category==='all') return list;
+  return list.filter(g=>primaryCategory(g)===uiState.category);
+}
+function buildCategoryChips(){
+  const cats=[...new Set([...GAMES,...PAID_GAMES].map(primaryCategory))].sort();
+  const wrap=document.getElementById('categoryChips');
+  wrap.innerHTML=['all',...cats].map(c=>
+    `<button class="chip ${c===uiState.category?'active':''}" onclick="setCategory('${c.replace(/'/g,"\\'")}')">${c==='all'?'All':c}</button>`
+  ).join('');
+}
+function setCategory(cat){
+  uiState.category=cat;
+  uiState.gamesShown=PAGE_SIZE; uiState.paidShown=PAGE_SIZE;
+  buildCategoryChips();
+  renderMainGrids();
+}
+function setSort(val){
+  uiState.sort=val;
+  renderMainGrids();
+}
+function renderMainGrids(){
+  const games=sortList(filterList(GAMES));
+  const paid=sortList(filterList(PAID_GAMES));
+  renderGrid('gameGrid', games, uiState.gamesShown);
+  renderGrid('paidGrid', paid, uiState.paidShown);
+  toggleLoadMore('gameLoadMoreWrap', games.length, uiState.gamesShown);
+  toggleLoadMore('paidLoadMoreWrap', paid.length, uiState.paidShown);
+}
+function renderGrid(id, list, shown){
+  const el=document.getElementById(id);
+  const slice=list.slice(0, shown);
+  el.innerHTML=slice.length ? slice.map(cardHtml).join('') : `<div class="search-empty" style="grid-column:1/-1"><span>🎮</span>No games in this category yet.</div>`;
+}
+function toggleLoadMore(wrapId, total, shown){
+  const wrap=document.getElementById(wrapId);
+  if(wrap) wrap.style.display = shown<total ? 'flex' : 'none';
+}
+function loadMoreGames(){ uiState.gamesShown+=PAGE_SIZE; renderMainGrids(); }
+function loadMorePaid(){ uiState.paidShown+=PAGE_SIZE; renderMainGrids(); }
+
+// Build adult grid (static, sits behind the age gate)
 (function(){
   const agrid=document.getElementById('adultGrid');
   agrid.innerHTML=ADULT_GAMES.map(g=>`
     <div class="card" onclick="showGame('${g.id}')">
       <div class="card-badge-adult">18+</div>
-      <img class="card-thumb" src="${g.img}" alt="${g.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img class="card-thumb" src="${g.img}" alt="${g.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="card-thumb-fallback" style="display:none">${g.emoji}</div>
       <div class="card-body">
         <div class="card-title">${g.title}</div>
@@ -1332,53 +1663,28 @@ buildGrid();
   `).join('');
 })();
 
-function badgeFor(g){
-  if(ADULT_GAMES.find(x=>x.id===g.id)) return '<div class="card-badge-adult">18+</div>';
-  if(g.discount) return `<div class="card-badge-discount"><span class="badge-old-price">${g.price}</span><span class="badge-new-price">${g.discount.salePrice} · ${g.discount.days}d left</span></div>`;
-  if(g.price) return `<div class="card-badge-paid">${g.price}</div>`;
-  return '<div class="card-badge">FREE</div>';
-}
-
-function cardHtml(g){
-  return `
-    <div class="card" onclick="showGame('${g.id}')">
-      ${badgeFor(g)}
-      <img class="card-thumb" src="${g.img}" alt="${g.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="card-thumb-fallback" style="display:none">${g.emoji}</div>
-      <div class="card-body">
-        <div class="card-title">${g.title}</div>
-        <div class="card-meta">
-          <span>${g.genre}</span>
-          <span class="dot"></span>
-          <span>${g.developer.split(' ')[0]}</span>
-        </div>
-      </div>
-    </div>`;
-}
-
+/* ---------- Search + autocomplete ---------- */
 let searchTimer=null;
 function handleSearch(query){
   document.getElementById('searchClear').classList.toggle('active', query.length>0);
+  renderAutocomplete(query.trim());
   clearTimeout(searchTimer);
   searchTimer=setTimeout(()=>runSearch(query.trim()), 150);
 }
 
 function runSearch(query){
-  const resultsEl=document.getElementById('searchResults');
-  const defaultEl=document.getElementById('defaultSections');
+  if(uiState.view==='wishlist' && query){ setView('default'); }
   if(!query){
-    resultsEl.style.display='none';
-    defaultEl.style.display='block';
+    if(uiState.view==='search') setView('default');
     return;
   }
+  setView('search');
   const q=query.toLowerCase();
   const matches=ALL_GAMES.filter(g=>
     g.title.toLowerCase().includes(q) ||
     g.genre.toLowerCase().includes(q) ||
     g.developer.toLowerCase().includes(q)
   );
-  defaultEl.style.display='none';
-  resultsEl.style.display='block';
   document.getElementById('searchCount').textContent = matches.length + (matches.length===1?' result':' results') + ' for "'+query+'"';
   const grid=document.getElementById('searchGrid');
   grid.innerHTML = matches.length
@@ -1386,13 +1692,53 @@ function runSearch(query){
     : `<div class="search-empty" style="grid-column:1/-1"><span>🔍</span>No games found. Try a different search.</div>`;
 }
 
+function renderAutocomplete(query){
+  const box=document.getElementById('autocomplete');
+  if(!query){ box.classList.remove('active'); box.innerHTML=''; return; }
+  const q=query.toLowerCase();
+  const matches=ALL_GAMES.filter(g=>g.title.toLowerCase().includes(q)).slice(0,6);
+  if(!matches.length){ box.classList.remove('active'); box.innerHTML=''; return; }
+  box.innerHTML=matches.map(g=>`
+    <div class="ac-item" onmousedown="selectAutocomplete('${g.id}')">
+      <img src="${g.img}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ac-item-fallback" style="display:none">${g.emoji}</div>
+      <div>
+        <div class="ac-title">${g.title}</div>
+        <div class="ac-genre">${g.genre}</div>
+      </div>
+    </div>
+  `).join('');
+  box.classList.add('active');
+}
+function hideAutocomplete(){
+  const box=document.getElementById('autocomplete');
+  box.classList.remove('active'); box.innerHTML='';
+}
+function selectAutocomplete(id){
+  hideAutocomplete();
+  document.getElementById('searchInput').value='';
+  document.getElementById('searchClear').classList.remove('active');
+  showGame(id);
+}
+document.addEventListener('click', (e)=>{
+  if(!document.getElementById('searchWrap').contains(e.target)) hideAutocomplete();
+});
+
 function clearSearch(){
   const input=document.getElementById('searchInput');
   input.value='';
   document.getElementById('searchClear').classList.remove('active');
+  hideAutocomplete();
   runSearch('');
   input.focus();
 }
+
+/* ---------- Init ---------- */
+buildCategoryChips();
+renderMainGrids();
+renderRecent();
+updateWishlistCount();
+checkAgeGate();
 
 const hash=window.location.hash.replace('#','');
 if(hash && ALL_GAMES.find(g=>g.id===hash)) showGame(hash);
