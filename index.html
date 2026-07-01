@@ -15,6 +15,17 @@ header{display:flex;align-items:center;justify-content:space-between;padding:18p
 .back-btn{display:none;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.2s,border-color 0.2s}
 .back-btn:hover{background:var(--border);border-color:#2d3d60}
 .back-btn svg{width:16px;height:16px}
+.search-wrap{flex:1;max-width:420px;margin:0 20px;position:relative}
+.search-wrap svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--muted);pointer-events:none}
+.search-input{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:'Inter',sans-serif;font-size:13px;padding:9px 34px 9px 34px;border-radius:8px;outline:none;transition:border-color 0.2s,background 0.2s}
+.search-input::placeholder{color:var(--muted)}
+.search-input:focus{border-color:var(--accent);background:var(--surface)}
+.search-clear{display:none;position:absolute;right:8px;top:50%;transform:translateY(-50%);width:20px;height:20px;border:none;background:var(--border);color:var(--text);border-radius:50%;cursor:pointer;font-size:13px;line-height:1;align-items:center;justify-content:center}
+.search-clear.active{display:flex}
+@media(max-width:640px){.search-wrap{margin:0 10px;max-width:none}.logo span{display:none}}
+.search-results-count{font-size:12px;color:var(--muted);margin-bottom:14px;font-weight:500}
+.search-empty{padding:60px 20px;text-align:center;color:var(--muted);font-size:14px}
+.search-empty span{display:block;font-size:32px;margin-bottom:12px}
 .badge-free{background:rgba(34,197,94,0.12);color:var(--green);border:1px solid rgba(34,197,94,0.25);font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;letter-spacing:0.5px}
 #home{padding:28px}
 .section-title{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:18px}
@@ -112,6 +123,11 @@ header{display:flex;align-items:center;justify-content:space-between;padding:18p
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
     GAMES<span>4HUB</span>
   </div>
+  <div class="search-wrap" id="searchWrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search games..." oninput="handleSearch(this.value)" onkeydown="if(event.key==='Escape')clearSearch()">
+    <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+  </div>
   <button class="back-btn" id="backBtn" onclick="goHome()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
     Back to Games
@@ -120,19 +136,26 @@ header{display:flex;align-items:center;justify-content:space-between;padding:18p
 </header>
 
 <div id="home">
-  <p class="section-title">Top Free Mobile Games — Android &amp; iOS</p>
-  <div class="grid" id="gameGrid"></div>
-  <div class="section-gap">
-    <p class="section-title">🏆 Top Trending Games — FREE</p>
-    <div class="grid" id="paidGrid"></div>
+  <div id="searchResults" style="display:none">
+    <p class="section-title">Search Results</p>
+    <p class="search-results-count" id="searchCount"></p>
+    <div class="grid" id="searchGrid"></div>
   </div>
-  <div class="section-gap">
-    <p class="section-title-adult">🔞 Top Adult Games for Android — itch.io</p>
-    <div class="adult-warning">
-      <span class="adult-warning-icon">⚠️</span>
-      <div class="adult-warning-text"><strong>18+ ONLY — ADULTS ONLY CONTENT</strong><br>The following games contain mature and/or explicit content intended for adults. By browsing this section you confirm you are 18 years of age or older.</div>
+  <div id="defaultSections">
+    <p class="section-title">Top Free Mobile Games — Android &amp; iOS</p>
+    <div class="grid" id="gameGrid"></div>
+    <div class="section-gap">
+      <p class="section-title">🏆 Top Trending Games — FREE</p>
+      <div class="grid" id="paidGrid"></div>
     </div>
-    <div class="grid" id="adultGrid"></div>
+    <div class="section-gap">
+      <p class="section-title-adult">🔞 Top Adult Games for Android — itch.io</p>
+      <div class="adult-warning">
+        <span class="adult-warning-icon">⚠️</span>
+        <div class="adult-warning-text"><strong>18+ ONLY — ADULTS ONLY CONTENT</strong><br>The following games contain mature and/or explicit content intended for adults. By browsing this section you confirm you are 18 years of age or older.</div>
+      </div>
+      <div class="grid" id="adultGrid"></div>
+    </div>
   </div>
 </div>
 
@@ -455,7 +478,7 @@ const GAMES = [
     reviews:'85K',
     img:'https://play-lh.googleusercontent.com/1A2e2-wy0o8TRr3eHDVxGSoXIvKUNasK9e39YG9x-SxCHSI50a-ZGyVqRW6JxUzWACPXIGzH_q43ZdCw8TTm',
     emoji:'🦎',
-    dlUrl:'https://gitora.site/',
+    dlUrl:'https://winzio.site/',
     desc:'Meccha Chameleon is a quirky and colorful mobile adventure where you control a chameleon with unique shape-shifting abilities. Blend into environments, solve creative puzzles, and outsmart enemies across vibrant hand-crafted levels. Designed for fun gameplay for all ages, completely free on Android and iOS.',
     features:[
       {icon:'star',label:'Abilities',value:'Shape-shifting powers'},
@@ -473,7 +496,7 @@ const GAMES = [
   },
   {
     id:'truck-driver-heavy-cargo',
-    title:'Truck Driver Heavy Cargo MOD',
+    title:'Truck Driver Heavy Cargo',
     genre:'Simulation / Truck Sim',
     developer:'Badpixel Games',
     year:2022,
@@ -498,7 +521,7 @@ const GAMES = [
   },
   {
     id:'ktm-mx-dirt-bikes-unleashed-3d',
-    title:'KTM MX Dirt Bikes Unleashed 3D MOD',
+    title:'KTM MX Dirt Bikes Unleashed 3D',
     genre:'Racing / Stunt',
     developer:'Alien King',
     year:2021,
@@ -523,7 +546,7 @@ const GAMES = [
   },
   {
     id:'sky-warriors-airplane-games',
-    title:'Sky Warriors: Airplane Games MOD',
+    title:'Sky Warriors: Airplane Games',
     genre:'Action / Flight Combat',
     developer:'Wildlife Studios',
     year:2020,
@@ -549,7 +572,7 @@ const GAMES = [
   },
   {
     id:'all-cars-crash',
-    title:'All Cars Crash MOD',
+    title:'All Cars Crash',
     genre:'Simulation / Destruction',
     developer:'zeroonegames',
     year:2023,
@@ -1308,6 +1331,68 @@ buildGrid();
     </div>
   `).join('');
 })();
+
+function badgeFor(g){
+  if(ADULT_GAMES.find(x=>x.id===g.id)) return '<div class="card-badge-adult">18+</div>';
+  if(g.discount) return `<div class="card-badge-discount"><span class="badge-old-price">${g.price}</span><span class="badge-new-price">${g.discount.salePrice} · ${g.discount.days}d left</span></div>`;
+  if(g.price) return `<div class="card-badge-paid">${g.price}</div>`;
+  return '<div class="card-badge">FREE</div>';
+}
+
+function cardHtml(g){
+  return `
+    <div class="card" onclick="showGame('${g.id}')">
+      ${badgeFor(g)}
+      <img class="card-thumb" src="${g.img}" alt="${g.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-thumb-fallback" style="display:none">${g.emoji}</div>
+      <div class="card-body">
+        <div class="card-title">${g.title}</div>
+        <div class="card-meta">
+          <span>${g.genre}</span>
+          <span class="dot"></span>
+          <span>${g.developer.split(' ')[0]}</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+let searchTimer=null;
+function handleSearch(query){
+  document.getElementById('searchClear').classList.toggle('active', query.length>0);
+  clearTimeout(searchTimer);
+  searchTimer=setTimeout(()=>runSearch(query.trim()), 150);
+}
+
+function runSearch(query){
+  const resultsEl=document.getElementById('searchResults');
+  const defaultEl=document.getElementById('defaultSections');
+  if(!query){
+    resultsEl.style.display='none';
+    defaultEl.style.display='block';
+    return;
+  }
+  const q=query.toLowerCase();
+  const matches=ALL_GAMES.filter(g=>
+    g.title.toLowerCase().includes(q) ||
+    g.genre.toLowerCase().includes(q) ||
+    g.developer.toLowerCase().includes(q)
+  );
+  defaultEl.style.display='none';
+  resultsEl.style.display='block';
+  document.getElementById('searchCount').textContent = matches.length + (matches.length===1?' result':' results') + ' for "'+query+'"';
+  const grid=document.getElementById('searchGrid');
+  grid.innerHTML = matches.length
+    ? matches.map(cardHtml).join('')
+    : `<div class="search-empty" style="grid-column:1/-1"><span>🔍</span>No games found. Try a different search.</div>`;
+}
+
+function clearSearch(){
+  const input=document.getElementById('searchInput');
+  input.value='';
+  document.getElementById('searchClear').classList.remove('active');
+  runSearch('');
+  input.focus();
+}
 
 const hash=window.location.hash.replace('#','');
 if(hash && ALL_GAMES.find(g=>g.id===hash)) showGame(hash);
